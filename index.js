@@ -11,7 +11,7 @@ app.use(cors());
 // Database Connection Pool
 const pool = mysql.createPool({
   host: process.env.DB_HOST || 'gateway01.ap-northeast-1.prod.aws.tidbcloud.com',
-  port: process.env.DB_PORT ? Number(process.env.DB_PORT) : 4000,
+  port: process.env.DB_PORT ? Number(process.env.DB_PORT) : 3000,
   user: process.env.DB_USER || 'HYHY_ANDIKA_USER_YAWE_HANO',       // Urugero: 3huHSfwqZrqE5Ro.root
   password: process.env.DB_PASSWORD || 'HYHY_ANDIKA_PASSWORD_YAWE_HANO', // Ijambo ry'ibanga rya TiDB
   database: 'test', 
