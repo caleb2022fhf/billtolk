@@ -9,12 +9,13 @@ app.use(express.json());
 app.use(cors());
 
 // Database Connection Pool
+// Database Connection Pool ikoresha amakuru yawe nyayo
 const pool = mysql.createPool({
-  host: process.env.DB_HOST || 'gateway01.ap-northeast-1.prod.aws.tidbcloud.com',
-  port: process.env.DB_PORT ? Number(process.env.DB_PORT) : 4000,
-  user: process.env.DB_USER || 'HYHY_ANDIKA_USER_YAWE_HANO',       // Urugero: 3huHSfwqZrqE5Ro.root
-  password: process.env.DB_PASSWORD || 'HYHY_ANDIKA_PASSWORD_YAWE_HANO', // Ijambo ry'ibanga rya TiDB
-  database: 'test', 
+  host: 'gateway01.ap-northeast-1.prod.aws.tidbcloud.com',
+  port: 4000,
+  user: '3huHSfWqZrqE5Ro.root',
+  password: '6basF0cUEHtv008T',
+  database: 'sys', 
   ssl: { rejectUnauthorized: true }
 });
 
