@@ -17,7 +17,7 @@ const pool = mysql.createPool({
   ssl: { rejectUnauthorized: true }
 });
 
-// 1. FRONTEND: Web page yose iri hano muri Backend (Single File)
+// 1. FRONTEND: Web page yose iri hano muri Backend
 app.get('/', (req, res) => {
   res.send(`
     <!DOCTYPE html>
@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
         <style>
             body { font-family: sans-serif; margin: 0; background: #fafafa; display: flex; justify-content: center; }
             .container { width: 100%; max-width: 480px; min-height: 100vh; background: #fff; border: 1px solid #dbdbdb; padding-bottom: 60px; }
-            header { display: flex; justifyContent: space-between; align-items: center; padding: 15px; border-bottom: 1px solid #dbdbdb; background: #fff; position: sticky; top: 0; }
+            header { display: flex; justify-content: space-between; align-items: center; padding: 15px; border-bottom: 1px solid #dbdbdb; background: #fff; position: sticky; top: 0; }
             h2 { margin: 0; }
             .feed { padding: 10px; }
             .post { border: 1px solid #dbdbdb; border-radius: 8px; margin-bottom: 15px; padding: 10px; background: #fff; }
@@ -69,6 +69,9 @@ app.get('/', (req, res) => {
                     } else {
                         feed.innerHTML = '<p style="text-align: center; color: #666;">Nta posts zirahari muri database.</p>';
                     }
+                })
+                .catch(err => {
+                    document.getElementById('feed').innerHTML = '<p style="text-align: center; color: red;">Error loading posts.</p>';
                 });
         </script>
     </body>
@@ -82,11 +85,17 @@ app.get('/api/posts', async (req, res) => {
     const [rows] = await pool.query('SELECT * FROM posts ORDER BY id DESC');
     res.json({ success: true, posts: rows });
   } catch (err) {
+    console.error("Database Error:", err.message);
     res.status(500).json({ success: false, error: err.message });
   }
 });
 
+// Gukora Localhost cyangwa Export kuri Serverless (Nka Vercel)
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Billtolk is running on http://localhost:${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Billtolk is running on http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;
