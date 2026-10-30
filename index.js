@@ -3,6 +3,7 @@ const mysql = require('mysql2/promise');
 const cors = require('cors');
 require('dotenv').config();
 
+
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -11,8 +12,8 @@ app.use(cors());
 const pool = mysql.createPool({
   host: process.env.DB_HOST || 'gateway01.ap-northeast-1.prod.aws.tidbcloud.com',
   port: process.env.DB_PORT ? Number(process.env.DB_PORT) : 4000,
-  user: process.env.DB_USER || '3huHSfwqZrqE5Ro.root',
-  password: process.env.DB_PASSWORD || '6basF0cUEHtv008T',
+  user: process.env.DB_USER || 'HYHY_ANDIKA_USER_YAWE_HANO',       // Urugero: 3huHSfwqZrqE5Ro.root
+  password: process.env.DB_PASSWORD || 'HYHY_ANDIKA_PASSWORD_YAWE_HANO', // Ijambo ry'ibanga rya TiDB
   database: 'test', 
   ssl: { rejectUnauthorized: true }
 });
