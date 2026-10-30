@@ -1,6 +1,7 @@
 {
-  "name": "billtolk-backend",
+  "name": "billtolk",
   "version": "1.0.0",
+  "description": "Billtolk Social Media App",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
